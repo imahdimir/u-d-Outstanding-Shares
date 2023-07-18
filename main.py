@@ -35,14 +35,17 @@ class FPN :
     t0 = dyr.td / 't0.prq'
     t1_0 = dyr.td / 't1_0.prq'
     t1_1 = dyr.td / 't1_1.prq'
+    t1_2 = dyr.td / 't1_2.prq'
 
 class ColName :
     url = 'url'
 
     rst = 'r-status'
-    rerr = 'r-error'
-    rcnt = 'r-content'
+    one = '1'
     n = 'n-in-group'
+    mkd = 'marked'
+    bfil = 'bfill'
+    ffil = 'ffill'
 
 # class instances   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 gdu = GDU()
