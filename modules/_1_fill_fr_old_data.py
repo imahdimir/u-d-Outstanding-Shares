@@ -16,6 +16,7 @@ from main import gdu
 
 def get_0_data() :
     gdt = GitHubDataRepo(gdu.os0_st)
+    gdt.clone_overwrite()
     df = gdt.read_data()
 
     df = df[[c.tse_id , c.d , cd.os]]

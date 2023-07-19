@@ -37,14 +37,13 @@ def main() :
     gd0 = clone_a_repo_return_repo_obj(gdu.os0_st)
 
     ##
-    replace_old_data_with_new(gd0 , fpn.t0)
+    replace_old_data_with_new(gd0 , fpn.d0)
 
     ##
     push_to_github(gd0)
 
     ##
 
-    ##
     # update final data
 
     gdf = clone_a_repo_return_repo_obj(gdu.os_st)
