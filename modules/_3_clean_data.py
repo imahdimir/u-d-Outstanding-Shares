@@ -5,17 +5,14 @@
 from pathlib import Path
 
 import pandas as pd
+from mirutil.df import assert_no_duplicated_rows_in_df_cols_subset
 from mirutil.df import reorder_df_cols_as_a_class_values
 from mirutil.df import save_df_as_prq
-from persiantools.jdatetime import JalaliDateTime
-from namespace_mahdimir.tse import (D0OutstandingSharesCol ,
-                                    DOutstandingSharesCol , )
-
-from mirutil.df import assert_no_duplicated_rows_in_df_cols_subset
+from namespace_mahdimir.tse import (DOutstandingSharesCol , )
 
 from main import c
-from main import cn
-from main import fpn , cd
+from main import cd
+from main import fpn
 
 def remove_same_ftic_and_d_but_different_os_rows(df) :
     msk1 = df.duplicated([c.ftic , c.d] , keep = False)

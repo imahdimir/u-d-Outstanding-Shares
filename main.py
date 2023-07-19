@@ -5,7 +5,6 @@
 from pathlib import Path
 
 from giteasy.github_repo import resolve_github_url
-from githubdata import GitHubDataRepo
 from mirutil.dirr import DefaultDirs
 from mirutil.run_modules import clean_cache_dirs
 from mirutil.run_modules import run_modules_from_dir_in_order
