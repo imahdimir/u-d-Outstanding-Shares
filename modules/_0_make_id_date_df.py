@@ -7,14 +7,11 @@ from pathlib import Path
 
 import pandas as pd
 from githubdata import GitHubDataRepo as GDR
-from mirutil.const import Const as MConst
 from mirutil.df import save_df_as_prq
 
 from main import c
 from main import fpn
 from main import gdu
-
-mk = MConst()
 
 def get_all_firm_ids() :
     """ get all Firms' TSETMC ids """

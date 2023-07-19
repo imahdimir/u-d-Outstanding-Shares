@@ -12,7 +12,7 @@ from main import fpn
 def check_complete_backward_compatibility(gdt) :
     dfo = gdt.read_data()
 
-    df = pd.read_parquet(fpn.t1_1)
+    df = pd.read_parquet(fpn.t2_1)
 
     dfo1 = dfo.merge(df , how = 'left' , indicator = True)
 

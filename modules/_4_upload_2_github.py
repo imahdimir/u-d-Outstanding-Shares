@@ -17,7 +17,7 @@ def replace_old_data_with_new(gdt) :
     tjd = JalaliDateTime.now().strftime('%Y-%m-%d')
     fp = gdt.local_path / f'{tjd}.prq'
 
-    shutil.copy(fpn.t1_1 , fp)
+    shutil.copy(fpn.t2_1 , fp)
 
 def push_to_github(gdt) :
     msg = 'Updated by ' + gdu.slf

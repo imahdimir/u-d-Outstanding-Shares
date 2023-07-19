@@ -12,10 +12,7 @@ from persiantools.jdatetime import JalaliDateTime
 
 from main import c
 from main import cn
-from main import fpn
-
-# namespace     %%%%%%%%%%%%%%%
-cd = DOutstandingSharesCol()
+from main import fpn , cd
 
 def main() :
     pass
@@ -46,7 +43,7 @@ def main() :
     ##
 
     ##
-    save_df_as_prq(df , fpn.t1_1)
+    save_df_as_prq(df , fpn.t2_1)
 
 ##
 
@@ -58,22 +55,11 @@ if __name__ == "__main__" :
 ##
 
 
-if False :
+def test() :
     pass
 
     ##
 
-    def test() :
-        pass
-
-        ##
-        df = df.drop(columns = ['OutstandingShares'])
-
-        ##
-        df = df.rename(columns = {
-                'OS' : cd.os ,
-                })
-
-        ##
-
     ##
+
+##
