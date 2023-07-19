@@ -44,6 +44,9 @@ class FPN :
     t2_2 = dyr.td / 't2_2.prq'
     t2_3 = dyr.td / 't2_3.prq'
 
+    d0 = dyr.td / 'd0.prq'
+    d = dyr.td / 'd.prq'
+
 class ColName :
     url = 'url'
 

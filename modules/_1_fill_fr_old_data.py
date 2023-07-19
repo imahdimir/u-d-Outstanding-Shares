@@ -44,7 +44,7 @@ def main() :
     ##
 
     # merge old data
-    df = df.merge(dfo , on = [c.tse_id , c.d] , how = 'left')
+    df = df.merge(dfo , on = [c.tse_id , c.d] , how = 'outer')
 
     ##
     count_nan_os_values(df)

@@ -3,24 +3,21 @@
     """
 
 import time
-from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
 import requests
-from githubdata import GitHubDataRepo as GDR
-from mirutil.df import save_df_as_prq
 from mirutil.async_req import get_resps_async_sync
-from mirutil.utils import ret_clusters_indices
-from persiantools.jdatetime import JalaliDateTime
-from mirutil.jdate import make_jdate_col_fr_str_date_col_in_a_df
-from namespace_mahdimir.tse import D0OutstandingSharesCol
 from mirutil.df import reorder_df_cols_as_a_class_values
+from mirutil.df import save_df_as_prq
+from mirutil.jdate import make_jdate_col_fr_str_date_col_in_a_df
+from mirutil.utils import ret_clusters_indices
+from namespace_mahdimir.tse import D0OutstandingSharesCol
 
-from main import c , cd
+from main import c
+from main import cd
 from main import cn
 from main import fpn
-from main import gdu
 
 class Const :
     # the url format
@@ -33,7 +30,9 @@ def make_the_url(firmticker_id , date) :
 def make_the_url_col(df) :
     fu = lambda ro : make_the_url(ro[c.tse_id] , ro[c.d].replace('-' , ''))
 
-    df[cn.url] = df.apply(fu , axis = 1)
+    msk = df[c.tse_id].notna()
+
+    df.loc[msk , cn.url] = df.apply(fu , axis = 1)
 
     return df
 
@@ -79,6 +78,8 @@ def mark_spaced_ones(df , space_days: int) :
 
 def filter_spaced_ones(df) :
     msk = df[cd.os].isna()
+    msk &= df[cn.url].notna()
+
     msk &= df[cn.mkd]
 
     df = df[msk]
@@ -88,6 +89,7 @@ def filter_spaced_ones(df) :
 
 def filter_to_get_items(df) :
     msk = df[cd.os].isna()
+    msk &= df[cn.url].notna()
 
     df = df[msk]
     print('empty ones count:' , len(df))
@@ -323,119 +325,6 @@ def test() :
 
     # test
     df = get_all_data(df , filter_spaced_ones)
-
-    ##
-
-    ##
-
-    ##
-    import time
-    from numpy import vectorize
-
-    # Start timer
-    start_time = time.time()
-
-    # Code to be timed
-    df = make_jdate_col_from_str_date_col(df , c.d , c.jd)
-
-    # End timer
-    end_time = time.time()
-
-    # Calculate elapsed time
-    elapsed_time = end_time - start_time
-    print("Elapsed time: " , elapsed_time)
-
-    ##
-
-    ##
-
-    ##
-
-    ##
-    df[cd.os] = df[cd.os].astype(int)
-
-    ##
-    df = df.sort_values(c.d)
-
-    ##
-
-    ##
-
-    ##
-
-    ##
-    from mirutil.df import assert_no_duplicated_rows_in_df_cols_subset
-
-    ##
-    assert_no_duplicated_rows_in_df_cols_subset(df , [c.ftic , c.d])
-
-    ##
-    msk1 = df.duplicated([c.ftic , c.d] , keep = False)
-    df5 = df[msk1]
-
-    ##
-    msk2 = df.duplicated([c.ftic , c.d , cd.os] , keep = False)
-
-    df6 = df[msk2]
-
-    ##
-    df6 = df6.sort_values([c.ftic , c.d])
-
-    ##
-    msk = msk1 & ~ msk2
-    df7 = df[msk]
-
-    ##
-    df = df[~ msk]
-
-    ##
-    msk1 = df.duplicated([c.ftic , c.d] , keep = False)
-    df5 = df[msk1]
-
-    ##
-    msk2 = df.duplicated([c.ftic , c.d , cd.os] , keep = False)
-
-    df6 = df[msk2]
-
-    ##
-    df5.equals(df6)
-
-    ##
-    msk = msk1 & ~ msk2
-    df7 = df[msk]
-
-    ##
-    df.to_parquet('temp.prq' , index = False)
-
-    ##
-    df = df.sort_values(c.d)
-
-    ##
-    df = df.reset_index(drop = True)
-
-    ##
-    msk = df[cd.os].isna()
-
-    df1 = df[msk]
-
-    ##
-    df1 = df1.reset_index()
-
-    ##
-    df1['index'].hist()
-
-    ##
-    df1['index'].max()
-
-    ##
-
-    ##
-
-    ##
-
-    ##
-
-    ##
 
     ##
 
